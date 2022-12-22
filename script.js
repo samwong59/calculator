@@ -46,6 +46,10 @@ function displayNumber(e) {
   display.textContent += num;
 }
 
+Array.from(document.querySelectorAll(".operator").forEach(operatorButton => {
+  operatorButton.addEventListener("click", displayOperator);
+}))
+
 function displayOperator(e) {
   const operator = e.target.textContent;
   display.textContent += ` ${operator} `;
