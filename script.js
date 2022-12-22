@@ -55,20 +55,7 @@ function displayOperator(e) {
   display.textContent += ` ${operator} `;
 }
 
-// Input: string STR_expression
-// Output: string STR_result
-// GUI: number and operator buttons to create STR_equation. Equals button to call function
-
-// Split STR_expression by whitespace into ARR_expression
-// If ARR_expression's size is even, pop last element and store in STR_extraOperator
-// Search ARR_expression for any "/" characters and store the index NUM_index
-// Divide previous element of NUM_index by following element of NUM_index and store in tempResult
-// splice out involved indexes and add tempResult in their place
-// Search for any more division operators and repeat process
-// repeat process for multiply then
-// repeat process for  addition then
-// repeat process for subtraction
-// display ARR_expression[0] + STR_extraOperator
+document.querySelector(".equals").addEventListener("click", calculate);
 
 function calculate() {
   const STR_expression = display.textContent;
