@@ -36,3 +36,12 @@ document.querySelector(".clear").addEventListener("click", clearDisplay);
 function clearDisplay() {
   display.textContent = "";
 }
+
+Array.from(document.querySelectorAll(".num")).forEach(numButton => {
+  numButton.addEventListener("click", displayNumber);
+});
+
+function displayNumber(e) {
+  const num = e.target.textContent;
+  display.textContent += num;
+}
