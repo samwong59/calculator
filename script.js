@@ -116,5 +116,10 @@ function calculate() {
     const NUM_previousIndex = NUM_index - 1;
     ARR_expression.splice(NUM_previousIndex, 3, subtract(ARR_expression[NUM_previousIndex], ARR_expression[NUM_index + 1]));
   }
-  console.log(ARR_expression);
+  if (!STR_extraOperator) {
+    display.textContent = ARR_expression[0];
+    return;
+  }
+  display.textContent = `${ARR_expression[0]} ${STR_extraOperator} `;
+  return;
 }
