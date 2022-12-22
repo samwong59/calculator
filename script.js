@@ -1,3 +1,5 @@
+const display = document.querySelector(".display");
+
 function add(NUM_num1, NUM_num2) {
   return NUM_num1 + NUM_num2;
 }
@@ -27,4 +29,10 @@ function operate(NUM_num1, NUM_num2, STR_operator) {
     default:
       return "Invalid input!";
   }
+}
+
+document.querySelector(".clear").addEventListener("click", clearDisplay);
+
+function clearDisplay() {
+  display.textContent = "";
 }
