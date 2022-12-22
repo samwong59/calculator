@@ -45,3 +45,8 @@ function displayNumber(e) {
   const num = e.target.textContent;
   display.textContent += num;
 }
+
+function displayOperator(e) {
+  const operator = e.target.textContent;
+  display.textContent += ` ${operator} `;
+}
