@@ -57,6 +57,17 @@ function displayOperator(e) {
 
 document.querySelector(".equals").addEventListener("click", calculate);
 
+function evaluateOperator(ARR_expression, STR_operator) {
+  while (true) {
+    const NUM_index = ARR_expression.findIndex(element => element == STR_operator);
+    if (NUM_index == -1) {
+      return;
+    }
+    const NUM_previousIndex = NUM_index - 1;
+    ARR_expression.splice(NUM_previousIndex, 3, operate(ARR_expression[NUM_previousIndex], ARR_expression[NUM_index + 1], STR_operator));
+  }
+}
+
 function calculate() {
   const STR_expression = display.textContent;
   const ARR_expression = STR_expression.split(" ");
@@ -66,43 +77,10 @@ function calculate() {
     ARR_expression.pop();
     STR_extraOperator = ARR_expression.pop();
   }
-  while (true) {
-    const NUM_index = ARR_expression.findIndex(element => element == "/");
-    // break when no more division operators are left in expression
-    if (NUM_index == -1) {
-      break;
-    }
-    // Evaluate division expression and place replace expression with result in ARR_expression
-    const NUM_previousIndex = NUM_index - 1;
-    ARR_expression.splice(NUM_previousIndex, 3, divide(ARR_expression[NUM_previousIndex], ARR_expression[NUM_index + 1]));
-  }
-  // Repeat division process with multiplication
-  while (true) {
-    const NUM_index = ARR_expression.findIndex(element => element == "*");
-    if (NUM_index == -1) {
-      break;
-    }
-    const NUM_previousIndex = NUM_index - 1;
-    ARR_expression.splice(NUM_previousIndex, 3, multiply(ARR_expression[NUM_previousIndex], ARR_expression[NUM_index + 1]));
-  }
-  // Repeat division process with addition
-    while (true) {
-      const NUM_index = ARR_expression.findIndex(element => element == "+");
-      if (NUM_index == -1) {
-        break;
-      }
-      const NUM_previousIndex = NUM_index - 1;
-      ARR_expression.splice(NUM_previousIndex, 3, add(ARR_expression[NUM_previousIndex], ARR_expression[NUM_index + 1]));
-    }
-  // Repeat division process with subtraction
-  while (true) {
-    const NUM_index = ARR_expression.findIndex(element => element == "-");
-    if (NUM_index == -1) {
-      break;
-    }
-    const NUM_previousIndex = NUM_index - 1;
-    ARR_expression.splice(NUM_previousIndex, 3, subtract(ARR_expression[NUM_previousIndex], ARR_expression[NUM_index + 1]));
-  }
+  evaluateOperator(ARR_expression, "/");
+  evaluateOperator(ARR_expression, "*");
+  evaluateOperator(ARR_expression, "+");
+  evaluateOperator(ARR_expression, "-");
   if (!STR_extraOperator) {
     display.textContent = ARR_expression[0];
     return;
