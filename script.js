@@ -1,3 +1,5 @@
+const STR_DIV_BY_ZERO_ERROR_MSG = "You can't divide by zero!";
+
 const display = document.querySelector(".display");
 
 function add(NUM_num1, NUM_num2) {
@@ -78,9 +80,17 @@ function calculate() {
     STR_extraOperator = ARR_expression.pop();
   }
   evaluateOperator(ARR_expression, "/");
+  if (ARR_expression[0] == STR_DIV_BY_ZERO_ERROR_MSG) {
+    display.textContent = ARR_expression[0];
+    return;
+  }
   evaluateOperator(ARR_expression, "*");
   evaluateOperator(ARR_expression, "+");
   evaluateOperator(ARR_expression, "-");
+  if (ARR_expression[0] === Infinity || ARR_expression[0] === -Infinity) {
+    display.textContent = STR_DIV_BY_ZERO_ERROR_MSG;
+    return;
+  }
   if (!STR_extraOperator) {
     display.textContent = ARR_expression[0];
     return;
